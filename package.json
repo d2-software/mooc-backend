@@ -7,14 +7,16 @@
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
     "lint": "standard \"src/util/**/*.js\" \"test/**/*.js\"",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "test": "NODE_ENV=test jest --verbose --silent",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d2-software/mooc-backend.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Domingo Llanes <info@domingollanes.me>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/d2-software/mooc-backend/issues"
@@ -25,6 +27,7 @@
     "express": "^4.17.3"
   },
   "devDependencies": {
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "standard": "^16.0.4"
   }
