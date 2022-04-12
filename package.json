@@ -1,0 +1,31 @@
+{
+  "name": "mooc-backend",
+  "version": "1.0.0",
+  "description": "Backend API in Node.JS for MOOC Platform.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "lint": "standard \"src/util/**/*.js\" \"test/**/*.js\"",
+    "lint:fix": "npm run lint -- --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d2-software/mooc-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/d2-software/mooc-backend/issues"
+  },
+  "homepage": "https://github.com/d2-software/mooc-backend#readme",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "standard": "^16.0.4"
+  }
+}

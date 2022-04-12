@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  pg:
+    image: postgres
+    container_name: bd_pg_mooc
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mooc_pw
+      POSTGRES_USER: mooc_user
+      POSTGRES_DB: mooc
+  web:
+    build: ./
+    container_name: web_mooc
+    ports:
+      - "4000:4000"
+    links:
+      - pg
+    depends_on:
+      - pg
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.git
