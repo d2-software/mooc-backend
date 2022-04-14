@@ -8,6 +8,8 @@ services:
       POSTGRES_PASSWORD: mooc_pw
       POSTGRES_USER: mooc_user
       POSTGRES_DB: mooc
+    ports:
+      - "5432:5432"
   web:
     build: ./
     container_name: web_mooc
