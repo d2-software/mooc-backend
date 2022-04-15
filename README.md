@@ -2,6 +2,25 @@
 
 Backend API in Node.JS for MOOC Platform.
 
+## Project configuration
+
+Project libraries:
+
+- Argon2
+- Dotenv
+- Express
+- Express Promise Router
+- Postgres
+- Sequelize
+
+Development libraries:
+
+- Jest
+- Nodemon
+- Sequelize-cli
+- Standard
+- Supertest
+
 ### Init project
 
 #### Configuration files
@@ -62,3 +81,15 @@ Undo migrations:
 npx sequelize-cli db:migrate:undo:all
 ```
 
+### Tests and TDD development
+
+**Jest** and **Supertest** are installed and configured. To start test watch inside docker:
+
+```shell
+docker-compose up -d
+docker-compose exec web /bin/sh
+
+# Inside docker
+su node
+npm run test:watch
+```

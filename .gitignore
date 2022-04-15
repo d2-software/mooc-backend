@@ -28,6 +28,9 @@ coverage
 # nyc test coverage
 .nyc_output
 
+# Jest cache directory
+.jest_rs
+
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
