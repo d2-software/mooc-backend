@@ -66,8 +66,8 @@ class User extends Model {
     )
   }
 
-  validPassword (password) {
-    return verify(password, this.password)
+  async validPassword (password) {
+    return verify(this.password, password)
   }
 
   toJSON () {

@@ -1,4 +1,6 @@
 const dotenv = require('dotenv')
+const { join } = require('path')
+const { readFileSync } = require('fs')
 
 const environment = process.env.NODE_ENV
 const envPath = environment === 'development' ? './.env' : `./.env.${ environment }`
@@ -25,6 +27,14 @@ module.exports = {
     joiOptions: {
       convert: true,
       allowUnknown: false
+    }
+  },
+  tokenOptions: {
+    expiresIn: 3600,
+    algorithm: 'RS512',
+    keys: {
+      private: readFileSync(join(__dirname, 'keys', 'jwt.key')),
+      public: readFileSync(join(__dirname, 'keys', 'jwt.key.pub'))
     }
   }
 }

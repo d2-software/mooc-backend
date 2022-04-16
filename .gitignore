@@ -111,3 +111,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# JWT keys
+/src/config/keys/jwt.key
+/src/config/keys/jwt.key.pub
