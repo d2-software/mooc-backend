@@ -2,55 +2,54 @@ const { hash, verify } = require('argon2')
 const { Sequelize, Model } = require('sequelize')
 
 class User extends Model {
-  static getSchema (DataTypes) {
-    return {
-      uuid: {
-        type: DataTypes.UUID,
-        defaultValue: Sequelize.UUIDV4,
-        primaryKey: true,
-      },
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING
-      },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      password: {
-        type: DataTypes.STRING,
-      },
-      active: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-      },
-    }
-  }
-
   static init (sequelize, DataTypes) {
     return super.init(
-      self.getSchema(DataTypes),
+      {
+        uuid: {
+          type: DataTypes.UUID,
+          defaultValue: Sequelize.UUIDV4,
+          primaryKey: true,
+        },
+        name: {
+          type: DataTypes.STRING
+        },
+        lastName: {
+          type: DataTypes.STRING
+        },
+        username: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        roleUuid: {
+          type: DataTypes.UUID,
+          allowNull: false,
+        },
+        password: {
+          type: DataTypes.STRING,
+        },
+        active: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
+        },
+      },
       {
         sequelize,
         timestamps: true,
         underscored: true,
         modelName: 'User',
         hooks: {
-          beforeCreate (attributes) {
+          async beforeCreate (attributes) {
             attributes.set(
               'password',
-              hash(attributes.get('password', { plain: true })),
+              await hash(attributes.get('password', { plain: true })),
             )
           },
-          beforeUpdate (instance) {
+          async beforeUpdate (instance) {
             if (instance.changed() && instance.changed().indexOf('password') !== -1) {
               instance.set(
                 'password',
-                hash(instance.get('password', { plain: true })),
+                await hash(instance.get('password', { plain: true })),
               )
             }
           },
@@ -67,8 +66,8 @@ class User extends Model {
     )
   }
 
-  validPassword (password) {
-    return verify(password, this.password)
+  async validPassword (password) {
+    return verify(this.password, password)
   }
 
   toJSON () {

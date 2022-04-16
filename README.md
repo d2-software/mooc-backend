@@ -37,6 +37,14 @@ cp .env.dist .env
 cp sequelize.json.dist sequelize.json
 ```
 
+**Key files for JWT**: Files inside `src/config/keys` for JWT sign. Generate keys:
+
+```shell
+cd src/config/keys
+ssh-keygen -t rsa -b 4096 -m PEM -f jwt.key # don't add passphrase
+openssl rsa -in jwt.key -pubout -outform PEM -out jwt.key.pub 
+```
+
 #### Docker & Docker Compose
 
 Start development environment:
